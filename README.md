@@ -1,5 +1,5 @@
 # SeekBarRangedView:
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view)  [ ![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view)  [ ![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion) [![Build Status](https://travis-ci.org/GuilhE/android-seekbar-ranged-view.svg?branch=master)](https://travis-ci.org/GuilhE/android-seekbar-ranged-view)
 
 A SeekBar restrained by a minimum and maximum value.
 
