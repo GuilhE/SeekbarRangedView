@@ -31,4 +31,6 @@ dependencies {
     androidTestCompile 'junit:junit:4.12'
 }
 
-apply from: 'deploy.gradle'
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'deploy.gradle'
+}
