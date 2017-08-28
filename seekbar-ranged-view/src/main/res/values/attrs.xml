@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SeekBarRangedView">
+        <attr name="min" format="float"/>
+        <attr name="max" format="float"/>
+        <attr name="currentMin" format="float"/>
+        <attr name="currentMax" format="float"/>
+        <attr name="rounded" format="boolean"/>
+        <attr name="backgroundColor" format="color"/>
+        <attr name="backgroundHeight" format="dimension"/>
+        <attr name="progressColor" format="color"/>
+        <attr name="progressHeight" format="dimension"/>
+        <attr name="thumbsResource" format="reference"/>
+        <attr name="thumbNormalResource" format="reference"/>
+        <attr name="thumbPressedResource" format="reference"/>
+    </declare-styleable>
+</resources>
