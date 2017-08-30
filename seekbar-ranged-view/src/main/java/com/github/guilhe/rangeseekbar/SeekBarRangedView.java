@@ -351,7 +351,6 @@ public class SeekBarRangedView extends View {
      */
     public void setBackgroundColor(int red, int green, int blue) {
         setBackgroundColor(0xFF, red, green, blue);
-        invalidate();
     }
 
     /**
@@ -367,18 +366,17 @@ public class SeekBarRangedView extends View {
         invalidate();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setBackgroundColor(Color color) {
-        mProgressBackgroundColor = color.toArgb();
-        invalidate();
+        setBackgroundColor(color.toArgb());
+    }
+
+    public void setBackgroundColorResource(@ColorRes int resId) {
+        setBackgroundColor(ContextCompat.getColor(getContext(), resId));
     }
 
     public void setBackgroundColor(int color) {
         mProgressBackgroundColor = color;
-        invalidate();
-    }
-
-    public void setBackgroundColorResource(@ColorRes int resId) {
-        mProgressBackgroundColor = ContextCompat.getColor(getContext(), resId);
         invalidate();
     }
 
@@ -391,7 +389,6 @@ public class SeekBarRangedView extends View {
      */
     public void setProgressColor(int red, int green, int blue) {
         setProgressColor(0xFF, red, green, blue);
-        invalidate();
     }
 
     /**
@@ -407,18 +404,17 @@ public class SeekBarRangedView extends View {
         invalidate();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setProgressColor(Color color) {
-        mProgressColor = color.toArgb();
-        invalidate();
+        setProgressColor(color.toArgb());
+    }
+
+    public void setProgressColorResource(@ColorRes int resId) {
+        setProgressColor(ContextCompat.getColor(getContext(), resId));
     }
 
     public void setProgressColor(int color) {
         mProgressColor = color;
-        invalidate();
-    }
-
-    public void setProgressColorResource(@ColorRes int resId) {
-        mProgressColor = ContextCompat.getColor(getContext(), resId);
         invalidate();
     }
 

@@ -1,6 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.github.guilhe.rangeseekbar">
-    <application
-            android:allowBackup="true"
-            android:supportsRtl="true"/>
-</manifest>
+<manifest package="com.github.guilhe.rangeseekbar"/>
