@@ -1,5 +1,5 @@
 # SeekBarRangedView:
-[![Build Status](https://travis-ci.org/GuilhE/android-seekbar-ranged-view.svg?branch=master)](https://travis-ci.org/GuilhE/android-seekbar-ranged-view)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view)  [ ![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SeekBarRangedView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6115)
+[![Build Status](https://travis-ci.org/GuilhE/android-seekbar-ranged-view.svg?branch=master)](https://travis-ci.org/GuilhE/android-seekbar-ranged-view)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SeekBarRangedView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6115)
 
 A SeekBar restrained by a minimum and maximum value.
 
@@ -16,8 +16,9 @@ Credits must be shared with [Nick Knudson](https://github.com/nickaknudson) ;)
 Include it into your project, for example, as a Gradle compile dependency:
 
 ```groovy
-compile 'com.github.guilhe:seekbar-ranged-view:1.0.0'
+compile 'com.github.guilhe:seekbar-ranged-view:1.0.1'
 ```
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view/badge.svg)](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22seekbar-ranged-view%22)  [ ![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion)  
 
 #### How to use it
 
@@ -142,36 +143,7 @@ For more details checkout _javadocs_ or the code itself.
 
 ## Binaries
 
-Binaries and dependency information for Gradle, Maven, Ivy and others can be found at [https://search.maven.org](https://search.maven.org/#artifactdetails%7Ccom.github.guilhe%7Cseekbar-ranged-view%7C1.0.0%7Caar).
-
-For Gradle:
-
-```groovy
-repositories {
-    jcenter()
- }
-
-dependencies {
-    compile 'com.github.guilhe:seekbar-ranged-view:1.0.0'
-}
-```
-
-and for Maven:
-```groovy
-<dependency>
-    <groupId>com.github.guilhe</groupId>
-    <artifactId>seekbar-ranged-view</artifactId>
-    <version>1.0.0</version>
-    <type>pom</type>
-</dependency>
-```
-
-and for Ivy:
-```groovy
-<dependency org='com.github.guilhe' name='seekbar-ranged-view' rev='1.0.0'>
-    <artifact name='seekbar-ranged-view' ext='pom' ></artifact>
-</dependency>
-```
+Binaries and dependency information for Gradle, Maven, Ivy and others can be found at [https://search.maven.org](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22seekbar-ranged-view%22).
 
 <a href='https://bintray.com/gdelgado/android/seekbar-ranged-view?source=watch' alt='Get automatic notifications about new "seekbar-ranged-view" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_bw.png'></a>
 
