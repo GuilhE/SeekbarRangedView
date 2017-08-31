@@ -20,7 +20,7 @@ compile 'com.github.guilhe:seekbar-ranged-view:1.0.1'
 ```
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view/badge.svg)](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22seekbar-ranged-view%22)  [ ![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion)  
 
-#### How to use it
+## Sample usage
 
 Check out the __sample__ module where you can find a few examples of how to create it by `xml` or `java`.
 
