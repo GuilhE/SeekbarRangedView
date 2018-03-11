@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">SBR sample</string>
+    <string name="app_name">seekbar-ranged-view</string>
+    <string name="hint_for_min">min</string>
+    <string name="hint_for_max">max</string>
+    <string name="lbl_min_value">0</string>
+    <string name="lbl_max_value">100</string>
+    <string name="btn_update">Update Min &amp; Max</string>
+    <string name="btn_animate">Animate</string>
 </resources>

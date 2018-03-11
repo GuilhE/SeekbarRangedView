@@ -7,7 +7,7 @@ Back in 2014 I contributed to this [project](https://github.com/GuilhE/android-n
 Credits must be shared with [Nick Knudson](https://github.com/nickaknudson) ;)
 
 #### Version 1.x
-
+  - **March, 2018** - Programmatically change max and min values
   - **August, 2017** - SeekBarRangedView
 
 
@@ -79,8 +79,12 @@ To customize this `View` by code, these are the available methods to do so:
 
     public float getMinValue() {}
 
+    public void setMinValue(float value) {}
+        
     public float getMaxValue() {}
-
+    
+    public void setMaxValue(float value) {}
+    
     public void setSelectedMinValue(float value) {}
 
     public void setSelectedMinValue(float value, boolean animate) {}
@@ -149,7 +153,7 @@ Binaries and dependency information for Gradle, Maven, Ivy and others can be fou
 
 ## Dependencies
 
-- [com.android.support:appcompat-v7](https://developer.android.com/topic/libraries/support-library/features.html#v7-appcompat)
+- [com.android.support:support-annotations](https://developer.android.com/topic/libraries/support-library/packages.html#annotations)
 
 ## Bugs and Feedback
 

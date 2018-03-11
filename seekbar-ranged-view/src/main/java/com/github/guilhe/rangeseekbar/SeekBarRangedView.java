@@ -2,6 +2,7 @@ package com.github.guilhe.rangeseekbar;
 
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.*;
@@ -10,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.*;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,7 +21,7 @@ import android.view.animation.DecelerateInterpolator;
  * Created by gdelgado on 24/08/2017.
  */
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "SameParameterValue"})
 public class SeekBarRangedView extends View {
 
     private enum Thumb {
@@ -61,20 +61,18 @@ public class SeekBarRangedView extends View {
     private float mProgressLineHeight;
     private int mProgressBackgroundColor = DEFAULT_BACKGROUND_COLOR;
     private int mProgressColor = DEFAULT_COLOR;
-    private float mMinValue;
     private ValueAnimator mMinValueAnimator;
-    private float mMaxValue;
     private ValueAnimator mMaxValueAnimator;
-    private double mMinValuePrim;
-    private double mMaxValuePrim;
-    private double mNormalizedMinValue;
-    private double mNormalizedMaxValue = 1d;
+    private float mMinValue;
+    private float mMaxValue;
+    private float mNormalizedMinValue;
+    private float mNormalizedMaxValue = 1f;
     private boolean mRounded;
 
     public interface OnSeekBarRangedChangeListener {
-        void onChanged(SeekBarRangedView view, double minValue, double maxValue);
+        void onChanged(SeekBarRangedView view, float minValue, float maxValue);
 
-        void onChanging(SeekBarRangedView view, double minValue, double maxValue);
+        void onChanging(SeekBarRangedView view, float minValue, float maxValue);
     }
 
     //<editor-fold desc="Create & Setup logic">
@@ -164,8 +162,6 @@ public class SeekBarRangedView extends View {
 
         mMinValue = min;
         mMaxValue = max;
-        mMinValuePrim = (double) min;
-        mMaxValuePrim = (double) max;
         setSelectedMinValue(currentMin);
         setSelectedMaxValue(currentMax);
 
@@ -185,8 +181,18 @@ public class SeekBarRangedView extends View {
         mCallback = listener;
     }
 
+    public void setMinValue(float value) {
+        mMinValue = value;
+        setSelectedMinValue(getSelectedMinValue());
+    }
+
     public float getMinValue() {
         return mMinValue;
+    }
+
+    public void setMaxValue(float value) {
+        mMaxValue = value;
+        setSelectedMaxVal(getSelectedMaxValue());
     }
 
     public float getMaxValue() {
@@ -220,15 +226,15 @@ public class SeekBarRangedView extends View {
 
     private void setSelectedMinVal(float value) {
         // in case mMinValue == mMaxValue, avoid division by zero when normalizing.
-        if (mMaxValuePrim - mMinValuePrim == 0) {
-            setNormalizedMinValue(0d);
+        if (mMaxValue - mMinValue == 0) {
+            setNormalizedMinValue(0);
         } else {
             setNormalizedMinValue(valueToNormalized(value));
         }
         onChangedValues();
     }
 
-    public double getSelectedMinValue() {
+    public float getSelectedMinValue() {
         return normalizedToValue(mNormalizedMinValue);
     }
 
@@ -259,19 +265,19 @@ public class SeekBarRangedView extends View {
 
     private void setSelectedMaxVal(float value) {
         // in case mMinValue == mMaxValue, avoid division by zero when normalizing.
-        if (mMaxValuePrim - mMinValuePrim == 0) {
-            setNormalizedMaxValue(1d);
+        if (mMaxValue - mMinValue == 0) {
+            setNormalizedMaxValue(1f);
         } else {
             setNormalizedMaxValue(valueToNormalized(value));
         }
         onChangedValues();
     }
 
-    public double getSelectedMaxValue() {
+    public float getSelectedMaxValue() {
         return normalizedToValue(mNormalizedMaxValue);
     }
 
-    private ValueAnimator getAnimator(double current, double next, long duration, ValueAnimator.AnimatorUpdateListener updateListener) {
+    private ValueAnimator getAnimator(float current, float next, long duration, ValueAnimator.AnimatorUpdateListener updateListener) {
         ValueAnimator animator = new ValueAnimator();
         animator.setInterpolator(new DecelerateInterpolator());
         animator.setDuration(duration);
@@ -290,8 +296,8 @@ public class SeekBarRangedView extends View {
      *
      * @param value The new normalized min value to set.
      */
-    private void setNormalizedMinValue(double value) {
-        mNormalizedMinValue = Math.max(0d, Math.min(1d, Math.min(value, mNormalizedMaxValue)));
+    private void setNormalizedMinValue(float value) {
+        mNormalizedMinValue = Math.max(0, Math.min(1, Math.min(value, mNormalizedMaxValue)));
         invalidate();
     }
 
@@ -300,8 +306,8 @@ public class SeekBarRangedView extends View {
      *
      * @param value The new normalized max value to set.
      */
-    private void setNormalizedMaxValue(double value) {
-        mNormalizedMaxValue = Math.max(0d, Math.min(1d, Math.max(value, mNormalizedMinValue)));
+    private void setNormalizedMaxValue(float value) {
+        mNormalizedMaxValue = Math.max(0, Math.min(1f, Math.max(value, mNormalizedMinValue)));
         invalidate();
     }
 
@@ -371,8 +377,13 @@ public class SeekBarRangedView extends View {
         setBackgroundColor(color.toArgb());
     }
 
+    /**
+     * You can simulate the use of this method with by calling {@link #setBackgroundColor(int)} with ContextCompat:
+     * setBackgroundColor(ContextCompat.getColor(resId));
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void setBackgroundColorResource(@ColorRes int resId) {
-        setBackgroundColor(ContextCompat.getColor(getContext(), resId));
+        setBackgroundColor(getContext().getColor(resId));
     }
 
     public void setBackgroundColor(int color) {
@@ -409,8 +420,13 @@ public class SeekBarRangedView extends View {
         setProgressColor(color.toArgb());
     }
 
+    /**
+     * You can simulate the use of this method with by calling {@link #setProgressColor(int)} with ContextCompat:
+     * setProgressColor(ContextCompat.getColor(resId));
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void setProgressColorResource(@ColorRes int resId) {
-        setProgressColor(ContextCompat.getColor(getContext(), resId));
+        setProgressColor(getContext().getColor(resId));
     }
 
     public void setProgressColor(int color) {
@@ -529,8 +545,8 @@ public class SeekBarRangedView extends View {
      * @param normalized The value to "de-normalize".
      * @return The "de-normalized" value.
      */
-    private double normalizedToValue(double normalized) {
-        return mMinValuePrim + normalized * (mMaxValuePrim - mMinValuePrim);
+    private float normalizedToValue(float normalized) {
+        return mMinValue + normalized * (mMaxValue - mMinValue);
     }
 
     /**
@@ -539,12 +555,12 @@ public class SeekBarRangedView extends View {
      * @param value The value to normalize.
      * @return The normalized value.
      */
-    private double valueToNormalized(float value) {
-        if (0 == mMaxValuePrim - mMinValuePrim) {
+    private float valueToNormalized(float value) {
+        if (0 == mMaxValue - mMinValue) {
             // prevent division by zero, simply return 0.
-            return 0d;
+            return 0;
         }
-        return ((double) value - mMinValuePrim) / (mMaxValuePrim - mMinValuePrim);
+        return (value - mMinValue) / (mMaxValue - mMinValue);
     }
 
     /**
@@ -553,8 +569,8 @@ public class SeekBarRangedView extends View {
      * @param normalizedCoordinate The normalized value to convert.
      * @return The converted value in screen space.
      */
-    private float normalizedToScreen(double normalizedCoordinate) {
-        return (float) (mPadding + normalizedCoordinate * (getWidth() - 2 * mPadding));
+    private float normalizedToScreen(float normalizedCoordinate) {
+        return mPadding + normalizedCoordinate * (getWidth() - 2 * mPadding);
     }
 
     /**
@@ -563,14 +579,14 @@ public class SeekBarRangedView extends View {
      * @param screenCoordinate The x-coordinate in screen space to convert.
      * @return The normalized value.
      */
-    private double screenToNormalized(float screenCoordinate) {
+    private float screenToNormalized(float screenCoordinate) {
         int width = getWidth();
         if (width <= 2 * mPadding) {
             // prevent division by zero, simply return 0.
-            return 0d;
+            return 0;
         } else {
-            double result = (screenCoordinate - mPadding) / (width - 2 * mPadding);
-            return Math.min(1d, Math.max(0d, result));
+            float result = (screenCoordinate - mPadding) / (width - 2 * mPadding);
+            return Math.min(1, Math.max(0, result));
         }
     }
     //</editor-fold>
@@ -646,7 +662,7 @@ public class SeekBarRangedView extends View {
      * @param normalizedThumbValue The normalized x-coordinate of the thumb to check.
      * @return true if x-coordinate is in thumb range, false otherwise.
      */
-    private boolean isInThumbRange(float touchX, double normalizedThumbValue) {
+    private boolean isInThumbRange(float touchX, float normalizedThumbValue) {
         return Math.abs(touchX - normalizedToScreen(normalizedThumbValue)) <= mThumbHalfWidth;
     }
     //</editor-fold>
@@ -711,6 +727,7 @@ public class SeekBarRangedView extends View {
                 , mPaint);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (!isEnabled()) {
@@ -814,8 +831,8 @@ public class SeekBarRangedView extends View {
     protected void onRestoreInstanceState(Parcelable parcel) {
         final Bundle bundle = (Bundle) parcel;
         super.onRestoreInstanceState(bundle.getParcelable("SUPER"));
-        mNormalizedMinValue = bundle.getDouble("MIN");
-        mNormalizedMaxValue = bundle.getDouble("MAX");
+        mNormalizedMinValue = bundle.getFloat("MIN");
+        mNormalizedMaxValue = bundle.getFloat("MAX");
         onChangedValues();
         onChangingValues();
     }

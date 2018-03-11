@@ -34,8 +34,72 @@
                 android:id="@+id/activity_main_c_RangeSeekBarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
                 custom:progressColor="@color/progress_bar_line"/>
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/activity_seekbar_c_min_TextView"
+                    tools:text="xxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                    android:id="@+id/activity_seekbar_c_current_TextView"
+                    tools:text="min: xxx max: yyy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:layout_constraintStart_toStartOf="parent"
+                    custom:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                    android:id="@+id/activity_seekbar_c_max_TextView"
+                    tools:text="yyy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:layout_constraintEnd_toEndOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <EditText
+                    android:id="@+id/activity_main_min_EditText"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/hint_for_min"
+                    android:text="@string/lbl_min_value"
+                    android:inputType="numberDecimal"
+                    android:maxLength="4"/>
+
+            <EditText
+                    android:id="@+id/activity_main_max_EditText"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/hint_for_max"
+                    android:text="@string/lbl_max_value"
+                    android:inputType="numberDecimal"
+                    android:maxLength="4"/>
+
+        </LinearLayout>
+
+        <Button
+                android:id="@+id/activity_update_Button"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/btn_update"/>
 
         <com.github.guilhe.rangeseekbar.SeekBarRangedView
                 android:id="@+id/activity_main_d_RangeSeekBarView"
@@ -50,11 +114,11 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"/>
 
-        <android.support.v7.widget.AppCompatButton
-                android:id="@+id/activity_main_AppCompatButton"
+        <Button
+                android:id="@+id/activity_animate_Button"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:text="Animate"/>
+                android:layout_margin="20sp"
+                android:text="@string/btn_animate"/>
     </LinearLayout>
 </layout>
