@@ -1,5 +1,5 @@
 # SeekBarRangedView:
-[![Build Status](https://travis-ci.org/GuilhE/android-seekbar-ranged-view.svg?branch=master)](https://travis-ci.org/GuilhE/android-seekbar-ranged-view)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SeekBarRangedView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6115)
+[![Build Status](https://travis-ci.org/GuilhE/android-seekbar-ranged-view.svg?branch=master)](https://travis-ci.org/GuilhE/android-seekbar-ranged-view)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3cc30ca7af394140983f6fcfdfc98c83)](https://www.codacy.com/app/GuilhE/android-seekbar-ranged-view?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GuilhE/android-seekbar-ranged-view&amp;utm_campaign=Badge_Grade)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SeekBarRangedView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6115)
 
 A SeekBar restrained by a minimum and maximum value.
 

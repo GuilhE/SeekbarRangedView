@@ -104,8 +104,10 @@ public class SeekBarRangedView extends View {
     private void setupAttrs(Context context, AttributeSet attrs) {
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SeekBarRangedView, 0, 0);
 
-        float min, currentMin;
-        float max, currentMax;
+        float min;
+        float currentMin;
+        float max;
+        float currentMax;
         int progressHeight;
         int bgProgressHeight;
         try {
@@ -813,6 +815,8 @@ public class SeekBarRangedView extends View {
                     setPressed(false);
                 }
                 invalidate(); // see above explanation
+                break;
+            default:
                 break;
         }
         return true;
