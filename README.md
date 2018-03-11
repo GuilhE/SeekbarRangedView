@@ -70,9 +70,9 @@ If you want to change its height, use the `backgroundHeight` and/or `progressHei
 To customize this `View` by code, these are the available methods to do so:
 ```java
     public interface OnSeekBarRangedChangeListener {
-        void onChanged(SeekBarRangedView view, double minValue, double maxValue);
+        void onChanged(SeekBarRangedView view, float minValue, float maxValue);
 
-        void onChanging(SeekBarRangedView view, double minValue, double maxValue);
+        void onChanging(SeekBarRangedView view, float minValue, float maxValue);
     }
     
     public void setSeekBarRangedChangeListener(OnSeekBarRangedChangeListener listener) {}
@@ -91,7 +91,7 @@ To customize this `View` by code, these are the available methods to do so:
 
     public void setSelectedMinValue(float value, boolean animate, long duration) {}
 
-    public double getSelectedMinValue() {}
+    public float getSelectedMinValue() {}
 
     public void setSelectedMaxValue(float value) {}
 
@@ -99,7 +99,7 @@ To customize this `View` by code, these are the available methods to do so:
 
     public void setSelectedMaxValue(float value, boolean animate, long duration) {}
 
-    public double getSelectedMaxValue() {}
+    public float getSelectedMaxValue() {}
 
     public void setRounded(boolean rounded) {}
 
