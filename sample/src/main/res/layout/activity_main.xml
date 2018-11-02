@@ -10,14 +10,14 @@
             android:padding="30dp"
             android:gravity="center">
 
-        <com.github.guilhe.rangeseekbar.SeekBarRangedView
+        <com.github.guilhe.views.SeekBarRangedView
                 android:id="@+id/activity_main_a_RangeSeekBarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 custom:thumbsResource="@mipmap/ic_launcher_round"/>
 
-        <com.github.guilhe.rangeseekbar.SeekBarRangedView
+        <com.github.guilhe.views.SeekBarRangedView
                 android:id="@+id/activity_main_b_RangeSeekBarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 custom:progressHeight="20dp"
                 custom:rounded="true"/>
 
-        <com.github.guilhe.rangeseekbar.SeekBarRangedView
+        <com.github.guilhe.views.SeekBarRangedView
                 android:id="@+id/activity_main_c_RangeSeekBarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                 android:layout_marginBottom="20dp"
                 android:text="@string/btn_update"/>
 
-        <com.github.guilhe.rangeseekbar.SeekBarRangedView
+        <com.github.guilhe.views.SeekBarRangedView
                 android:id="@+id/activity_main_d_RangeSeekBarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

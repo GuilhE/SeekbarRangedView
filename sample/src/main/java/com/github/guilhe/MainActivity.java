@@ -1,4 +1,4 @@
-package com.github.guilhe.android.rangeseekbar;
+package com.github.guilhe;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -7,8 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import com.github.guilhe.android.rangeseekbar.R;
 import com.github.guilhe.android.rangeseekbar.databinding.ActivityMainBinding;
-import com.github.guilhe.rangeseekbar.SeekBarRangedView;
+import com.github.guilhe.views.SeekBarRangedView;
 
 import java.util.Locale;
 import java.util.Random;

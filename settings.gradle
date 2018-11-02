@@ -1,1 +1,1 @@
-include ':sample', ':seekbar-ranged-view'
+include ':sample', ':library'

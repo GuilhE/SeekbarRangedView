@@ -67,82 +67,14 @@ If you want to change its height, use the `backgroundHeight` and/or `progressHei
 ![example](sample3.png)
 
 
-To customize this `View` by code, these are the available methods to do so:
-```java
-    public interface OnSeekBarRangedChangeListener {
-        void onChanged(SeekBarRangedView view, float minValue, float maxValue);
+There are many methods to help you customize this `View` by code. For more details checkout the __sample app__, _javadocs_ or the code itself.
 
-        void onChanging(SeekBarRangedView view, float minValue, float maxValue);
-    }
-    
-    public void setSeekBarRangedChangeListener(OnSeekBarRangedChangeListener listener) {}
+## Sample
+<img src="sample.gif" alt="Sample" width="30%"/>
 
-    public float getMinValue() {}
+_Animation last update on November, 2018_
 
-    public void setMinValue(float value) {}
-        
-    public float getMaxValue() {}
-    
-    public void setMaxValue(float value) {}
-    
-    public void setSelectedMinValue(float value) {}
-
-    public void setSelectedMinValue(float value, boolean animate) {}
-
-    public void setSelectedMinValue(float value, boolean animate, long duration) {}
-
-    public float getSelectedMinValue() {}
-
-    public void setSelectedMaxValue(float value) {}
-
-    public void setSelectedMaxValue(float value, boolean animate) {}
-
-    public void setSelectedMaxValue(float value, boolean animate, long duration) {}
-
-    public float getSelectedMaxValue() {}
-
-    public void setRounded(boolean rounded) {}
-
-    public void setBackgroundHeight(float height) {}
-
-    public void setProgressHeight(float height) {}
-        
-    public void setBackgroundColor(int red, int green, int blue) {}
-
-    public void setBackgroundColor(int alpha, int red, int green, int blue) {}
-
-    public void setBackgroundColor(Color color) {}
-
-    public void setBackgroundColor(int color) {}
-
-    public void setBackgroundColorResource(@ColorRes int resId) {}
-
-    public void setProgressColor(int red, int green, int blue) {}
-
-    public void setProgressColor(int alpha, int red, int green, int blue) {}
-
-    public void setProgressColor(Color color) {}
-
-    public void setProgressColor(int color) {}
-
-    public void setProgressColorResource(@ColorRes int resId) {}
-
-    public void setThumbsImage(Bitmap bitmap) {}
-
-    public void setThumbsImageResource(@DrawableRes int resId) {}
-
-    public void setThumbNormalImage(Bitmap bitmap) {}
-
-    public void setThumbNormalImageResource(@DrawableRes int resId) {}
-
-    public void setThumbPressedImage(Bitmap bitmap) {}
-
-    public void setThumbPressedImageResource(@DrawableRes int resId) {}
-```
-
-For more details checkout _javadocs_ or the code itself.
-
-![example](sample.gif)
+<a href='https://play.google.com/store/apps/details?id=com.github.guilhe.seekbarrangedview.sample&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="30%" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
  
 
 ## Binaries

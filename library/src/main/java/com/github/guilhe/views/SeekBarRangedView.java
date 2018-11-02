@@ -1,4 +1,4 @@
-package com.github.guilhe.rangeseekbar;
+package com.github.guilhe.views;
 
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
