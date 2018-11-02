@@ -43,7 +43,7 @@ Attributes accepted in xml:
 ```
 Example:
 ```xml
-<com.github.guilhe.rangeseekbar.SeekBarRangedView
+<com.github.guilhe.views.SeekBarRangedView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 custom:currentMin="10"
@@ -56,15 +56,15 @@ Example:
 
 For `android:layout_height` you should use `"wrap_content"`:
 
-<img src="sample1.png" alt="Sample1" width="30%"/>
+<img src="sample1.png" alt="Sample1" width="50%"/>
 
 otherwise you'll be adding "margins" to your view (ex, `android:layout_height="200dp"`):
 
-<img src="sample2.png" alt="Sample2" width="30%"/>
+<img src="sample2.png" alt="Sample2" width="50%"/>
 
 If you want to change its height, use the `backgroundHeight` and/or `progressHeight` attributes instead:
 
-<img src="sample3.png" alt="Sample3" width="30%"/>
+<img src="sample3.png" alt="Sample3" width="50%"/>
 
 
 There are many methods to help you customize this `View` by code. For more details checkout the __sample app__, _javadocs_ or the code itself.
