@@ -826,8 +826,8 @@ public class SeekBarRangedView extends View {
     protected Parcelable onSaveInstanceState() {
         final Bundle bundle = new Bundle();
         bundle.putParcelable("SUPER", super.onSaveInstanceState());
-        bundle.putDouble("MIN", mNormalizedMinValue);
-        bundle.putDouble("MAX", mNormalizedMaxValue);
+        bundle.putFloat("MIN", mNormalizedMinValue);
+        bundle.putFloat("MAX", mNormalizedMaxValue);
         return bundle;
     }
 
