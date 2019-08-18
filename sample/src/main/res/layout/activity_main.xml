@@ -2,123 +2,128 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:custom="http://schemas.android.com/apk/res-auto">
-
-    <LinearLayout
-            android:orientation="vertical"
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="30dp"
-            android:gravity="center">
-
-        <com.github.guilhe.views.SeekBarRangedView
-                android:id="@+id/activity_main_a_RangeSeekBarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                custom:thumbsResource="@mipmap/ic_launcher_round"/>
-
-        <com.github.guilhe.views.SeekBarRangedView
-                android:id="@+id/activity_main_b_RangeSeekBarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                custom:currentMin="30"
-                custom:currentMax="75"
-                custom:backgroundColor="#C0C0C0"
-                custom:progressColor="@color/progress_bar_line"
-                custom:backgroundHeight="10dp"
-                custom:progressHeight="20dp"
-                custom:rounded="true"/>
-
-        <com.github.guilhe.views.SeekBarRangedView
-                android:id="@+id/activity_main_c_RangeSeekBarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                custom:progressColor="@color/progress_bar_line"/>
-
-        <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            <TextView
-                    android:id="@+id/activity_seekbar_c_min_TextView"
-                    tools:text="xxx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    custom:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                    android:id="@+id/activity_seekbar_c_current_TextView"
-                    tools:text="min: xxx max: yyy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    custom:layout_constraintStart_toStartOf="parent"
-                    custom:layout_constraintEnd_toEndOf="parent"/>
-
-            <TextView
-                    android:id="@+id/activity_seekbar_c_max_TextView"
-                    tools:text="yyy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    custom:layout_constraintEnd_toEndOf="parent"/>
-
-        </android.support.constraint.ConstraintLayout>
+            android:fillViewport="true">
 
         <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:padding="30dp"
+                android:gravity="center">
 
-            <EditText
-                    android:id="@+id/activity_main_min_EditText"
-                    android:layout_width="60dp"
+            <com.github.guilhe.views.SeekBarRangedView
+                    android:id="@+id/activity_main_a_RangeSeekBarView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="@string/hint_for_min"
-                    android:text="@string/lbl_min_value"
-                    android:inputType="numberDecimal"
-                    android:maxLength="4"/>
+                    android:layout_marginBottom="40dp"
+                    custom:thumbsResource="@mipmap/ic_launcher_round"/>
 
-            <EditText
-                    android:id="@+id/activity_main_max_EditText"
-                    android:layout_width="60dp"
+            <com.github.guilhe.views.SeekBarRangedView
+                    android:id="@+id/activity_main_b_RangeSeekBarView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="@string/hint_for_max"
-                    android:text="@string/lbl_max_value"
-                    android:inputType="numberDecimal"
-                    android:maxLength="4"/>
+                    android:layout_marginBottom="40dp"
+                    custom:currentMin="30"
+                    custom:currentMax="75"
+                    custom:backgroundColor="#C0C0C0"
+                    custom:progressColor="@color/progress_bar_line"
+                    custom:backgroundHeight="10dp"
+                    custom:progressHeight="20dp"
+                    custom:rounded="true"/>
 
+            <com.github.guilhe.views.SeekBarRangedView
+                    android:id="@+id/activity_main_c_RangeSeekBarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    custom:progressColor="@color/progress_bar_line"/>
+
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/activity_seekbar_c_min_TextView"
+                        tools:text="xxx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        custom:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                        android:id="@+id/activity_seekbar_c_current_TextView"
+                        tools:text="min: xxx max: yyy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        custom:layout_constraintStart_toStartOf="parent"
+                        custom:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                        android:id="@+id/activity_seekbar_c_max_TextView"
+                        tools:text="yyy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        custom:layout_constraintEnd_toEndOf="parent"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/activity_main_min_EditText"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="@string/hint_for_min"
+                        android:text="@string/lbl_min_value"
+                        android:inputType="numberDecimal"
+                        android:maxLength="4"/>
+
+                <EditText
+                        android:id="@+id/activity_main_max_EditText"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="@string/hint_for_max"
+                        android:text="@string/lbl_max_value"
+                        android:inputType="numberDecimal"
+                        android:maxLength="4"/>
+
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/activity_update_Button"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/btn_update"/>
+
+            <com.github.guilhe.views.SeekBarRangedView
+                    android:id="@+id/activity_main_d_RangeSeekBarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/activity_main_TextView"
+                    tools:text="RangeSeekBar value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"/>
+
+            <Button
+                    android:id="@+id/activity_animate_Button"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="20sp"
+                    android:text="@string/btn_animate"/>
         </LinearLayout>
-
-        <Button
-                android:id="@+id/activity_update_Button"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/btn_update"/>
-
-        <com.github.guilhe.views.SeekBarRangedView
-                android:id="@+id/activity_main_d_RangeSeekBarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        <TextView
-                android:id="@+id/activity_main_TextView"
-                tools:text="RangeSeekBar value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"/>
-
-        <Button
-                android:id="@+id/activity_animate_Button"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_margin="20sp"
-                android:text="@string/btn_animate"/>
-    </LinearLayout>
+    </ScrollView>
 </layout>
