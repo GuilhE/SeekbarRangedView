@@ -828,6 +828,8 @@ public class SeekBarRangedView extends View {
         bundle.putParcelable("SUPER", super.onSaveInstanceState());
         bundle.putFloat("MIN", mNormalizedMinValue);
         bundle.putFloat("MAX", mNormalizedMaxValue);
+        bundle.putFloat("MIN_RANGE", mMinValue);
+        bundle.putFloat("MAX_RANGE", mMaxValue);
         return bundle;
     }
 
@@ -837,6 +839,8 @@ public class SeekBarRangedView extends View {
         super.onRestoreInstanceState(bundle.getParcelable("SUPER"));
         mNormalizedMinValue = bundle.getFloat("MIN");
         mNormalizedMaxValue = bundle.getFloat("MAX");
+        mMinValue = bundle.getFloat("MIN_RANGE");
+        mMaxValue = bundle.getFloat("MAX_RANGE");
         onChangedValues();
         onChangingValues();
     }
