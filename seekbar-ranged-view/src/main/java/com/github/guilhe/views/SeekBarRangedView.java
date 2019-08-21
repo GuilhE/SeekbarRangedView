@@ -17,6 +17,9 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * Created by gdelgado on 24/08/2017.
  */
@@ -68,6 +71,8 @@ public class SeekBarRangedView extends View {
     private float mNormalizedMinValue;
     private float mNormalizedMaxValue = 1f;
     private boolean mRounded;
+    private boolean mStepProgressEnable;
+    private List<Float> mStepList = new ArrayList<>();
 
     public interface OnSeekBarRangedChangeListener {
         void onChanged(SeekBarRangedView view, float minValue, float maxValue);
@@ -596,7 +601,11 @@ public class SeekBarRangedView extends View {
     //<editor-fold desc="Touch logic">
     private void trackTouchEvent(MotionEvent event) {
         final int pointerIndex = event.findPointerIndex(mActivePointerId);
-        final float x = event.getX(pointerIndex);
+        float x = event.getX(pointerIndex);
+
+        if (mStepProgressEnable) {
+            x = getClosestStep(x);
+        }
 
         if (Thumb.MIN.equals(mPressedThumb)) {
             setNormalizedMinValue(screenToNormalized(x));
@@ -669,6 +678,46 @@ public class SeekBarRangedView extends View {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Snap logic">
+    public void enableProgressBySteps(boolean enable) {
+        mStepProgressEnable = enable;
+        invalidate();
+    }
+
+    /**
+     * This will change min and max value.
+     *
+     * @param steps values for each step
+     */
+    public void setProgressSteps(float... steps) {
+        List<Float> res = new ArrayList<>();
+        for (float step : steps) {
+            res.add(step);
+        }
+        setProgressSteps(res);
+    }
+
+    public void setProgressSteps(List<Float> steps) {
+        mStepList.clear();
+        mStepList.addAll(steps);
+        setMinValue(mStepList.get(0));
+        setMaxValue(mStepList.get(mStepList.size() - 1));
+    }
+
+    private float getClosestStep(float value) {
+        float distance = Math.abs(mStepList.get(0) - value);
+        float cdistance, res = 0;
+        for (Float step : mStepList) {
+            cdistance = Math.abs(step - value);
+            if (cdistance < distance) {
+                res = step;
+                distance = cdistance;
+            }
+        }
+        return res;
+    }
+    //</editor-fold>
+
     //<editor-fold desc="View life-cycle">
     @Override
     protected synchronized void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -709,6 +758,13 @@ public class SeekBarRangedView extends View {
         mPaint.setColor(mProgressColor);
         canvas.drawRoundRect(mProgressLineRect, corners, corners, mPaint);
 
+        // draw progress steps, if enabled
+        if (mStepProgressEnable) {
+            for (Float step : mStepList) {
+                drawStep(canvas, normalizedToScreen(valueToNormalized(step)), 12);
+            }
+        }
+
         // draw minimum thumb
         drawThumb(canvas, normalizedToScreen(mNormalizedMinValue), Thumb.MIN.equals(mPressedThumb));
 
@@ -727,6 +783,15 @@ public class SeekBarRangedView extends View {
                 , screenCoordinate - (pressed ? mThumbPressedHalfWidth : mThumbHalfWidth)
                 , (0.5f * getHeight()) - (pressed ? mThumbPressedHalfHeight : mThumbHalfHeight)
                 , mPaint);
+    }
+
+    /**
+     * @param canvas           The canvas to draw upon.
+     * @param screenCoordinate The x-coordinate in screen space where to draw the step.
+     * @param radius           Step circle radius
+     */
+    private void drawStep(Canvas canvas, float screenCoordinate, float radius) {
+        canvas.drawCircle(screenCoordinate - (radius / 2), (0.5f * getHeight()), radius, mPaint);
     }
 
     @SuppressLint("ClickableViewAccessibility")

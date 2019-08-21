@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         binding.activityMainARangeSeekBarView.setBackgroundColor(Color.LTGRAY);
         binding.activityMainARangeSeekBarView.setProgressColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
 
+        binding.activityMainStepRangeSeekBarView.enableProgressBySteps(true);
+        binding.activityMainStepRangeSeekBarView.setProgressSteps(0, 25, 50, 75, 100);
+
         binding.activityMainCRangeSeekBarView.setRounded(true);
         binding.activityMainCRangeSeekBarView.setBackgroundHeight(50);
         binding.activityMainCRangeSeekBarView.setProgressHeight(15);
