@@ -6,6 +6,13 @@ A SeekBar restrained by a minimum and maximum value.
 Back in 2014 I contributed to this [project](https://github.com/GuilhE/android-nickaknudson/commits/master) by adding a few functionalities to ___RangeSeekBar.java___. The repo had no activity since then, so I've decided to extend it and continue.
 Credits must be shared with [Nick Knudson](https://github.com/nickaknudson) ;)
 
+#### Version 2.x
+  - **August, 2019** - Progress-by-Step added
+
+<img src="sample4.png" alt="Sample4" width="50%"/>
+
+<img src="sample5.png" alt="Sample5" width="50%"/>
+
 #### Version 1.x
   - **March, 2018** - Programmatically change max and min values
   - **August, 2017** - SeekBarRangedView

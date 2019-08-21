@@ -7,10 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 import com.github.guilhe.android.rangeseekbar.R;
 import com.github.guilhe.android.rangeseekbar.databinding.ActivityMainBinding;
 import com.github.guilhe.views.SeekBarRangedView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -31,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         binding.activityMainARangeSeekBarView.setBackgroundColor(Color.LTGRAY);
         binding.activityMainARangeSeekBarView.setProgressColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+
+        binding.activityMainStepRangeSeekBarView.setBackgroundColor(Color.LTGRAY);
+        binding.activityMainStepRangeSeekBarView.setProgressColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+        binding.activityMainStepRangeSeekBarView.enableProgressBySteps(true);
+        binding.activityMainStepRangeSeekBarView.setProgressSteps(20, 40, 60, 80);
 
         binding.activityMainCRangeSeekBarView.setRounded(true);
         binding.activityMainCRangeSeekBarView.setBackgroundHeight(50);

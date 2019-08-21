@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 
+import java.util.*;
+
 /**
  * Created by gdelgado on 24/08/2017.
  */
@@ -35,8 +37,8 @@ public class SeekBarRangedView extends View {
     private static final int DEFAULT_COLOR = Color.argb(0xFF, 0x33, 0xB5, 0xE5);
     private static final int DEFAULT_BACKGROUND_COLOR = Color.argb(0xFF, 0xC0, 0xC0, 0xC0);
     private static final int DEFAULT_PROGRESS_HEIGHT = 10;
-    private static final int DEFAULT_MIN_PROGRESS = 0;
-    private static final int DEFAULT_MAX_PROGRESS = 100;
+    private static final float DEFAULT_MIN_PROGRESS = 0;
+    private static final float DEFAULT_MAX_PROGRESS = 100;
     private static final long DEFAULT_ANIMATE_DURATION = 1000;
 
     private int mActivePointerId = INVALID_POINTER_ID;
@@ -68,6 +70,8 @@ public class SeekBarRangedView extends View {
     private float mNormalizedMinValue;
     private float mNormalizedMaxValue = 1f;
     private boolean mRounded;
+    private boolean mStepProgressEnable;
+    private List<Float> mProgressStepList = new ArrayList<>();
 
     public interface OnSeekBarRangedChangeListener {
         void onChanged(SeekBarRangedView view, float minValue, float maxValue);
@@ -183,18 +187,40 @@ public class SeekBarRangedView extends View {
         mCallback = listener;
     }
 
-    public void setMinValue(float value) {
+    /**
+     * This method will change the min value to a desired value. Note that if Progress by Steps is enabled, min will stay as default.
+     *
+     * @param value new min value
+     * @return true if changed
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public boolean setMinValue(float value) {
+        if (mStepProgressEnable) {
+            return false;
+        }
         mMinValue = value;
         setSelectedMinValue(getSelectedMinValue());
+        return true;
     }
 
     public float getMinValue() {
         return mMinValue;
     }
 
-    public void setMaxValue(float value) {
+    /**
+     * This method will change the max value to a desired value. Note that if Progress by Steps is enabled, max will stay as default.
+     *
+     * @param value new max value
+     * @return true if changed
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public boolean setMaxValue(float value) {
+        if (mStepProgressEnable) {
+            return false;
+        }
         mMaxValue = value;
         setSelectedMaxVal(getSelectedMaxValue());
+        return true;
     }
 
     public float getMaxValue() {
@@ -596,12 +622,16 @@ public class SeekBarRangedView extends View {
     //<editor-fold desc="Touch logic">
     private void trackTouchEvent(MotionEvent event) {
         final int pointerIndex = event.findPointerIndex(mActivePointerId);
-        final float x = event.getX(pointerIndex);
+        float x = event.getX(pointerIndex);
+
+        if (mStepProgressEnable) {
+            x = getClosestStep(screenToNormalized(x));
+        }
 
         if (Thumb.MIN.equals(mPressedThumb)) {
-            setNormalizedMinValue(screenToNormalized(x));
+            setNormalizedMinValue(mStepProgressEnable ? x : screenToNormalized(x));
         } else if (Thumb.MAX.equals(mPressedThumb)) {
-            setNormalizedMaxValue(screenToNormalized(x));
+            setNormalizedMaxValue(mStepProgressEnable ? x : screenToNormalized(x));
         }
     }
 
@@ -669,6 +699,76 @@ public class SeekBarRangedView extends View {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Progress-by-Step logic">
+
+    /**
+     * When enabled, min and max are set to 0 and 100 (default values) and cannot be changed
+     *
+     * @param enable if true, enables Progress by Step
+     */
+    public void enableProgressBySteps(boolean enable) {
+        mStepProgressEnable = enable;
+        if (enable) {
+            setMinValue(DEFAULT_MIN_PROGRESS);
+            setMaxValue(DEFAULT_MAX_PROGRESS);
+        }
+        invalidate();
+    }
+
+    /**
+     * Note: 0 and 100 will automatically be added as min and max respectively, you don't need to add it again.
+     *
+     * @param steps values for each step
+     */
+    public void setProgressSteps(float... steps) {
+        if (steps != null) {
+            List<Float> res = new ArrayList<>();
+            for (float step : steps) {
+                res.add(step);
+            }
+            setProgressSteps(res);
+        }
+    }
+
+    /**
+     * Note: 0 and 100 will automatically be added as min and max respectively, you don't need to add it again.
+     *
+     * @param steps values for each step
+     */
+    public void setProgressSteps(List<Float> steps) {
+        if (steps != null) {
+            mProgressStepList.clear();
+            mProgressStepList.add(valueToNormalized(DEFAULT_MIN_PROGRESS));
+            for (Float step : steps) {
+                mProgressStepList.add(valueToNormalized(step));
+            }
+            mProgressStepList.add(valueToNormalized(DEFAULT_MAX_PROGRESS));
+            invalidate();
+        }
+    }
+
+    public List<Float> getProgressSteps() {
+        List<Float> res = new ArrayList<>();
+        for (Float step : mProgressStepList) {
+            res.add(normalizedToValue(step));
+        }
+        return res;
+    }
+
+    private float getClosestStep(float value) {
+        float min = Math.abs(mProgressStepList.get(0) - value);
+        float currentMin, colesest = 0;
+        for (Float step : mProgressStepList) {
+            currentMin = Math.abs(step - value);
+            if (currentMin < min) {
+                colesest = step;
+                min = currentMin;
+            }
+        }
+        return colesest;
+    }
+    //</editor-fold>
+
     //<editor-fold desc="View life-cycle">
     @Override
     protected synchronized void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -709,11 +809,23 @@ public class SeekBarRangedView extends View {
         mPaint.setColor(mProgressColor);
         canvas.drawRoundRect(mProgressLineRect, corners, corners, mPaint);
 
+        float minX = normalizedToScreen(mNormalizedMinValue);
+        float maxX = normalizedToScreen(mNormalizedMaxValue);
+        // draw progress steps, if enabled
+        if (mStepProgressEnable) {
+            float stepX;
+            for (Float step : mProgressStepList) {
+                stepX = normalizedToScreen(step);
+                mPaint.setColor(stepX > maxX || stepX < minX ? mProgressBackgroundColor : mProgressColor);
+                drawStep(canvas, normalizedToScreen(step), 12, mPaint);
+            }
+        }
+
         // draw minimum thumb
-        drawThumb(canvas, normalizedToScreen(mNormalizedMinValue), Thumb.MIN.equals(mPressedThumb));
+        drawThumb(canvas, minX, Thumb.MIN.equals(mPressedThumb));
 
         // draw maximum thumb
-        drawThumb(canvas, normalizedToScreen(mNormalizedMaxValue), Thumb.MAX.equals(mPressedThumb));
+        drawThumb(canvas, maxX, Thumb.MAX.equals(mPressedThumb));
     }
 
     /**
@@ -727,6 +839,16 @@ public class SeekBarRangedView extends View {
                 , screenCoordinate - (pressed ? mThumbPressedHalfWidth : mThumbHalfWidth)
                 , (0.5f * getHeight()) - (pressed ? mThumbPressedHalfHeight : mThumbHalfHeight)
                 , mPaint);
+    }
+
+    /**
+     * @param canvas           The canvas to draw upon.
+     * @param screenCoordinate The x-coordinate in screen space where to draw the step.
+     * @param radius           Step circle radius
+     * @param paint            Paint to color the steps
+     */
+    private void drawStep(Canvas canvas, float screenCoordinate, float radius, Paint paint) {
+        canvas.drawCircle(screenCoordinate - (radius / 2), (0.5f * getHeight()), radius, paint);
     }
 
     @SuppressLint("ClickableViewAccessibility")
