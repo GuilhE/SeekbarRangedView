@@ -24,8 +24,6 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private Random mRandom = new Random();
-    private List<Integer> mIndexes = new ArrayList<>();
-    private int mSteps;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         binding.activityMainStepRangeSeekBarView.setBackgroundColor(Color.LTGRAY);
         binding.activityMainStepRangeSeekBarView.setProgressColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
         binding.activityMainStepRangeSeekBarView.enableProgressBySteps(true);
-        binding.activityMainStepRangeSeekBarView.setProgressSteps(25, 50, 75);
-        mSteps = binding.activityMainStepRangeSeekBarView.getProgressSteps().size();
+        binding.activityMainStepRangeSeekBarView.setProgressSteps(20, 40, 60, 80);
 
         binding.activityMainCRangeSeekBarView.setRounded(true);
         binding.activityMainCRangeSeekBarView.setBackgroundHeight(50);
@@ -104,21 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 float max = mRandom.nextInt((int) (binding.activityMainDRangeSeekBarView.getMaxValue() - binding.activityMainDRangeSeekBarView.getSelectedMinValue() + 1)) + binding.activityMainDRangeSeekBarView.getSelectedMinValue();
                 binding.activityMainDRangeSeekBarView.setSelectedMinValue(min, true);
                 binding.activityMainDRangeSeekBarView.setSelectedMaxValue(max, true, 2000);
-
-                int index = 0;
-                boolean take = true;
-                while (take) {
-                    if (mIndexes.size() == binding.activityMainStepRangeSeekBarView.getProgressSteps().size()) {
-                        mIndexes.clear();
-                    }
-                    index = mRandom.nextInt(mSteps);
-                    take = mIndexes.contains(index);
-                    if (!take) {
-                        mIndexes.add(index);
-                    }
-                }
-                Toast.makeText(MainActivity.this, String.valueOf(index), Toast.LENGTH_SHORT).show();
-                binding.activityMainStepRangeSeekBarView.setSelectedMinValue(binding.activityMainStepRangeSeekBarView.getProgressSteps().get(index), true);
             }
         });
     }

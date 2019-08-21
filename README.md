@@ -9,6 +9,10 @@ Credits must be shared with [Nick Knudson](https://github.com/nickaknudson) ;)
 #### Version 2.x
   - **August, 2019** - Progress-by-Step added
 
+<img src="sample4.png" alt="Sample4" width="50%"/>
+
+<img src="sample5.png" alt="Sample5" width="50%"/>
+
 #### Version 1.x
   - **March, 2018** - Programmatically change max and min values
   - **August, 2017** - SeekBarRangedView
@@ -75,7 +79,7 @@ There are many methods to help you customize this `View` by code. For more detai
 ## Sample
 <img src="sample.gif" alt="Sample" width="30%"/>
 
-_Animation last update on August, 2019_
+_Animation last update on November, 2018_
 
 <a href='https://play.google.com/store/apps/details?id=com.github.guilhe.rangeseekbar.sample&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="30%" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
  
