@@ -7,10 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 import com.github.guilhe.android.rangeseekbar.R;
 import com.github.guilhe.android.rangeseekbar.databinding.ActivityMainBinding;
 import com.github.guilhe.views.SeekBarRangedView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -21,6 +24,8 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private Random mRandom = new Random();
+    private List<Integer> mIndexes = new ArrayList<>();
+    private int mSteps;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
         binding.activityMainARangeSeekBarView.setBackgroundColor(Color.LTGRAY);
         binding.activityMainARangeSeekBarView.setProgressColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
 
+        binding.activityMainStepRangeSeekBarView.setBackgroundColor(Color.LTGRAY);
+        binding.activityMainStepRangeSeekBarView.setProgressColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
         binding.activityMainStepRangeSeekBarView.enableProgressBySteps(true);
-        binding.activityMainStepRangeSeekBarView.setProgressSteps(0, 25, 50, 75, 100);
+        binding.activityMainStepRangeSeekBarView.setProgressSteps(25, 50, 75);
+        mSteps = binding.activityMainStepRangeSeekBarView.getProgressSteps().size();
 
         binding.activityMainCRangeSeekBarView.setRounded(true);
         binding.activityMainCRangeSeekBarView.setBackgroundHeight(50);
@@ -96,6 +104,21 @@ public class MainActivity extends AppCompatActivity {
                 float max = mRandom.nextInt((int) (binding.activityMainDRangeSeekBarView.getMaxValue() - binding.activityMainDRangeSeekBarView.getSelectedMinValue() + 1)) + binding.activityMainDRangeSeekBarView.getSelectedMinValue();
                 binding.activityMainDRangeSeekBarView.setSelectedMinValue(min, true);
                 binding.activityMainDRangeSeekBarView.setSelectedMaxValue(max, true, 2000);
+
+                int index = 0;
+                boolean take = true;
+                while (take) {
+                    if (mIndexes.size() == binding.activityMainStepRangeSeekBarView.getProgressSteps().size()) {
+                        mIndexes.clear();
+                    }
+                    index = mRandom.nextInt(mSteps);
+                    take = mIndexes.contains(index);
+                    if (!take) {
+                        mIndexes.add(index);
+                    }
+                }
+                Toast.makeText(MainActivity.this, String.valueOf(index), Toast.LENGTH_SHORT).show();
+                binding.activityMainStepRangeSeekBarView.setSelectedMinValue(binding.activityMainStepRangeSeekBarView.getProgressSteps().get(index), true);
             }
         });
     }

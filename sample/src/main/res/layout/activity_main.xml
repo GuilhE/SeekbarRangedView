@@ -23,6 +23,13 @@
                     custom:thumbsResource="@mipmap/ic_launcher_round"/>
 
             <com.github.guilhe.views.SeekBarRangedView
+                    android:id="@+id/activity_main_step_RangeSeekBarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    custom:thumbsResource="@mipmap/ic_launcher_round"/>
+
+            <com.github.guilhe.views.SeekBarRangedView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="40dp"
@@ -33,12 +40,6 @@
                     custom:backgroundHeight="10dp"
                     custom:progressHeight="20dp"
                     custom:rounded="true"/>
-
-            <com.github.guilhe.views.SeekBarRangedView
-                    android:id="@+id/activity_main_step_RangeSeekBarView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="40dp"/>
 
             <com.github.guilhe.views.SeekBarRangedView
                     android:id="@+id/activity_main_c_RangeSeekBarView"
