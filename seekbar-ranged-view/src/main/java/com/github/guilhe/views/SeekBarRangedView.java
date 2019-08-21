@@ -4,6 +4,7 @@ import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.*;
 import android.graphics.Paint.Style;
@@ -37,6 +38,7 @@ public class SeekBarRangedView extends View {
     private static final int DEFAULT_COLOR = Color.argb(0xFF, 0x33, 0xB5, 0xE5);
     private static final int DEFAULT_BACKGROUND_COLOR = Color.argb(0xFF, 0xC0, 0xC0, 0xC0);
     private static final int DEFAULT_PROGRESS_HEIGHT = 10;
+    private static final int DEFAULT_STEP_RADIUS = DEFAULT_PROGRESS_HEIGHT + 2;
     private static final float DEFAULT_MIN_PROGRESS = 0;
     private static final float DEFAULT_MAX_PROGRESS = 100;
     private static final long DEFAULT_ANIMATE_DURATION = 1000;
@@ -72,6 +74,7 @@ public class SeekBarRangedView extends View {
     private boolean mRounded;
     private boolean mStepProgressEnable;
     private List<Float> mProgressStepList = new ArrayList<>();
+    private float mStepRadius = DEFAULT_STEP_RADIUS;
 
     public interface OnSeekBarRangedChangeListener {
         void onChanged(SeekBarRangedView view, float minValue, float maxValue);
@@ -562,7 +565,9 @@ public class SeekBarRangedView extends View {
     }
 
     private void updatePadding() {
-        mPadding = Math.max(Math.max(mThumbHalfWidth, mThumbPressedHalfWidth), Math.max(mThumbHalfHeight, mThumbPressedHalfHeight));
+        float thumbWidth = Math.max(mThumbHalfWidth, mThumbPressedHalfWidth);
+        float thumbHeight = Math.max(mThumbHalfHeight, mThumbPressedHalfHeight);
+        mPadding = Math.max(Math.max(thumbWidth, thumbHeight), mStepRadius);
     }
 
     //<editor-fold desc="Value converters">
@@ -747,6 +752,15 @@ public class SeekBarRangedView extends View {
         }
     }
 
+    /**
+     * @param radius in pixels
+     */
+    public void setProgressStepRadius(float radius) {
+        mStepRadius = radius;
+        updatePadding();
+        invalidate();
+    }
+
     public List<Float> getProgressSteps() {
         List<Float> res = new ArrayList<>();
         for (Float step : mProgressStepList) {
@@ -778,7 +792,7 @@ public class SeekBarRangedView extends View {
         }
         int maxThumb = Math.max(mThumbImage.getHeight(), mThumbPressedImage.getHeight());
         int maxHeight = (int) Math.max(mProgressLineHeight, mBackgroundLineHeight);
-        int height = Math.max(maxThumb, maxHeight);
+        int height = Math.max(Math.max(maxThumb, maxHeight), dpToPx(mStepRadius));
         if (MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.UNSPECIFIED) {
             height = Math.min(height, MeasureSpec.getSize(heightMeasureSpec));
         }
@@ -811,20 +825,19 @@ public class SeekBarRangedView extends View {
 
         float minX = normalizedToScreen(mNormalizedMinValue);
         float maxX = normalizedToScreen(mNormalizedMaxValue);
+
         // draw progress steps, if enabled
         if (mStepProgressEnable) {
             float stepX;
             for (Float step : mProgressStepList) {
                 stepX = normalizedToScreen(step);
                 mPaint.setColor(stepX > maxX || stepX < minX ? mProgressBackgroundColor : mProgressColor);
-                drawStep(canvas, normalizedToScreen(step), 12, mPaint);
+                drawStep(canvas, normalizedToScreen(step), mStepRadius, mPaint);
             }
         }
 
-        // draw minimum thumb
+        // draw thumbs
         drawThumb(canvas, minX, Thumb.MIN.equals(mPressedThumb));
-
-        // draw maximum thumb
         drawThumb(canvas, maxX, Thumb.MAX.equals(mPressedThumb));
     }
 
@@ -848,7 +861,7 @@ public class SeekBarRangedView extends View {
      * @param paint            Paint to color the steps
      */
     private void drawStep(Canvas canvas, float screenCoordinate, float radius, Paint paint) {
-        canvas.drawCircle(screenCoordinate - (radius / 2), (0.5f * getHeight()), radius, paint);
+        canvas.drawCircle(screenCoordinate, (0.5f * getHeight()), radius, paint);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -967,4 +980,8 @@ public class SeekBarRangedView extends View {
         onChangingValues();
     }
     //</editor-fold>
+
+    public int dpToPx(float dp) {
+        return (int) Math.ceil(dp * Resources.getSystem().getDisplayMetrics().density);
+    }
 }
