@@ -23,7 +23,7 @@ Credits must be shared with [Nick Knudson](https://github.com/nickaknudson) ;)
 Include it into your project, for example, as a Gradle compile dependency:
 
 ```groovy
-compile 'com.github.guilhe:seekbar-ranged-view:${LATEST_VERSION}'
+implementation 'com.github.guilhe:seekbar-ranged-view:${LATEST_VERSION}'
 ```
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view/badge.svg)](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22seekbar-ranged-view%22)  [ ![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion)  
 
