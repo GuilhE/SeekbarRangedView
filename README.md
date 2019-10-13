@@ -1,4 +1,4 @@
-# SeekBarRangedView:
+# SeekBarRangedView
 [![Build Status](https://travis-ci.org/GuilhE/android-seekbar-ranged-view.svg?branch=master)](https://travis-ci.org/GuilhE/android-seekbar-ranged-view)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3cc30ca7af394140983f6fcfdfc98c83)](https://www.codacy.com/app/GuilhE/android-seekbar-ranged-view?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GuilhE/android-seekbar-ranged-view&amp;utm_campaign=Badge_Grade)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SeekBarRangedView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6115)
 
 A SeekBar restrained by a minimum and maximum value.
@@ -7,14 +7,15 @@ Back in 2014 I contributed to this [project](https://github.com/GuilhE/android-n
 Credits must be shared with [Nick Knudson](https://github.com/nickaknudson) ;)
 
 #### Version 2.x
-  - **August, 2019** - Progress-by-Step added
+- **October, 2019** - Thumbs by drawable better support
+- **August, 2019** - Progress-by-Step added
 
 <img src="sample4.png" alt="Sample4" width="30%"/>
 <img src="sample5.png" alt="Sample5" width="30%"/>
 
 #### Version 1.x
-  - **March, 2018** - Programmatically change max and min values
-  - **August, 2017** - SeekBarRangedView
+- **March, 2018** - Programmatically change max and min values
+- **August, 2017** - SeekBarRangedView
 
 
 ## Getting started

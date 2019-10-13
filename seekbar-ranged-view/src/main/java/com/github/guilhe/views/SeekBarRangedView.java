@@ -6,19 +6,31 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.*;
+import android.support.annotation.AttrRes;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.annotation.StyleRes;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gdelgado on 24/08/2017.
@@ -108,7 +120,7 @@ public class SeekBarRangedView extends View {
         setupAttrs(context, attrs);
     }
 
-    private void setupAttrs(Context context, AttributeSet attrs) {
+    private void setupAttrs(@NonNull Context context, AttributeSet attrs) {
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SeekBarRangedView, 0, 0);
 
         float min;
@@ -130,13 +142,13 @@ public class SeekBarRangedView extends View {
             mProgressBackgroundColor = a.getColor(R.styleable.SeekBarRangedView_backgroundColor, DEFAULT_BACKGROUND_COLOR);
 
             if (a.hasValue(R.styleable.SeekBarRangedView_thumbsResource)) {
-                setThumbsImageResource(a.getResourceId(R.styleable.SeekBarRangedView_thumbsResource, android.R.drawable.radiobutton_off_background), false);
+                setThumbsImageResource(a.getResourceId(R.styleable.SeekBarRangedView_thumbsResource, R.drawable.default_thumb), false);
             } else {
                 if (a.hasValue(R.styleable.SeekBarRangedView_thumbNormalResource)) {
-                    setThumbNormalImageResource(a.getResourceId(R.styleable.SeekBarRangedView_thumbNormalResource, android.R.drawable.radiobutton_off_background), false);
+                    setThumbNormalImageResource(a.getResourceId(R.styleable.SeekBarRangedView_thumbNormalResource, R.drawable.default_thumb), false);
                 }
                 if (a.hasValue(R.styleable.SeekBarRangedView_thumbPressedResource)) {
-                    setThumbPressedImageResource(a.getResourceId(R.styleable.SeekBarRangedView_thumbPressedResource, android.R.drawable.radiobutton_on_background), false);
+                    setThumbPressedImageResource(a.getResourceId(R.styleable.SeekBarRangedView_thumbPressedResource, R.drawable.default_thumb_pressed), false);
                 }
             }
         } finally {
@@ -155,12 +167,12 @@ public class SeekBarRangedView extends View {
         mProgressLineRect = new RectF();
 
         if (mThumbImage == null && mThumbPressedImage == null) {
-            setThumbNormalImageResource(android.R.drawable.radiobutton_off_background, false);
-            setThumbPressedImageResource(android.R.drawable.radiobutton_on_background, false);
+            setThumbNormalImageResource(R.drawable.default_thumb, false);
+            setThumbPressedImageResource(R.drawable.default_thumb_pressed, false);
         } else if (mThumbImage == null) {
-            setThumbNormalImageResource(android.R.drawable.radiobutton_off_background, false);
+            setThumbNormalImageResource(R.drawable.default_thumb, false);
         } else if (mThumbPressedImage == null) {
-            setThumbPressedImageResource(android.R.drawable.radiobutton_on_background, false);
+            setThumbPressedImageResource(R.drawable.default_thumb_pressed, false);
         }
 
         measureThumb();
@@ -404,7 +416,7 @@ public class SeekBarRangedView extends View {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setBackgroundColor(Color color) {
+    public void setBackgroundColor(@NonNull Color color) {
         setBackgroundColor(color.toArgb());
     }
 
@@ -447,7 +459,7 @@ public class SeekBarRangedView extends View {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setProgressColor(Color color) {
+    public void setProgressColor(@NonNull Color color) {
         setProgressColor(color.toArgb());
     }
 
@@ -504,13 +516,11 @@ public class SeekBarRangedView extends View {
     }
 
     private void setThumbNormalImageResource(@DrawableRes int resId, boolean requestLayout) {
-        mThumbImage = BitmapFactory.decodeResource(getResources(), resId);
-        mThumbPressedImage = mThumbPressedImage == null ? mThumbImage : mThumbPressedImage;
-        measureThumb();
-        updatePadding();
-        if (requestLayout) {
-            requestLayout();
-        }
+        Drawable d = getResources().getDrawable(resId);
+        mThumbImage = Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+        d.draw(new Canvas(mThumbImage));
+        setThumbNormalImage(mThumbImage);
     }
 
     public void setThumbPressedImage(Bitmap bitmap) {
@@ -532,13 +542,11 @@ public class SeekBarRangedView extends View {
     }
 
     private void setThumbPressedImageResource(@DrawableRes int resId, boolean requestLayout) {
-        mThumbPressedImage = BitmapFactory.decodeResource(getResources(), resId);
-        mThumbImage = mThumbImage == null ? mThumbPressedImage : mThumbImage;
-        measureThumbPressed();
-        updatePadding();
-        if (requestLayout) {
-            requestLayout();
-        }
+        Drawable d = getResources().getDrawable(resId);
+        mThumbPressedImage = Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+        d.draw(new Canvas(mThumbPressedImage));
+        setThumbPressedImage(mThumbPressedImage);
     }
     //</editor-fold>
 
@@ -625,7 +633,7 @@ public class SeekBarRangedView extends View {
     //</editor-fold>
 
     //<editor-fold desc="Touch logic">
-    private void trackTouchEvent(MotionEvent event) {
+    private void trackTouchEvent(@NonNull MotionEvent event) {
         final int pointerIndex = event.findPointerIndex(mActivePointerId);
         float x = event.getX(pointerIndex);
 
@@ -640,7 +648,7 @@ public class SeekBarRangedView extends View {
         }
     }
 
-    private void onSecondaryPointerUp(MotionEvent ev) {
+    private void onSecondaryPointerUp(@NonNull MotionEvent ev) {
         final int pointerIndex = (ev.getAction() & ACTION_POINTER_INDEX_MASK) >> ACTION_POINTER_INDEX_SHIFT;
         final int pointerId = ev.getPointerId(pointerIndex);
         if (pointerId == mActivePointerId) {
@@ -846,7 +854,7 @@ public class SeekBarRangedView extends View {
      * @param screenCoordinate The x-coordinate in screen space where to draw the image.
      * @param pressed          Is the thumb currently in "pressed" state?
      */
-    private void drawThumb(Canvas canvas, float screenCoordinate, boolean pressed) {
+    private void drawThumb(@NonNull Canvas canvas, float screenCoordinate, boolean pressed) {
         canvas.drawBitmap(
                 pressed ? mThumbPressedImage : mThumbImage
                 , screenCoordinate - (pressed ? mThumbPressedHalfWidth : mThumbHalfWidth)
@@ -860,7 +868,7 @@ public class SeekBarRangedView extends View {
      * @param radius           Step circle radius
      * @param paint            Paint to color the steps
      */
-    private void drawStep(Canvas canvas, float screenCoordinate, float radius, Paint paint) {
+    private void drawStep(@NonNull Canvas canvas, float screenCoordinate, float radius, Paint paint) {
         canvas.drawCircle(screenCoordinate, (0.5f * getHeight()), radius, paint);
     }
 
@@ -981,7 +989,7 @@ public class SeekBarRangedView extends View {
     }
     //</editor-fold>
 
-    public int dpToPx(float dp) {
+    private int dpToPx(float dp) {
         return (int) Math.ceil(dp * Resources.getSystem().getDisplayMetrics().density);
     }
 }
