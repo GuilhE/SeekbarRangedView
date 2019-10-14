@@ -23,6 +23,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.StyleRes;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -426,7 +427,7 @@ public class SeekBarRangedView extends View {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void setBackgroundColorResource(@ColorRes int resId) {
-        setBackgroundColor(getContext().getColor(resId));
+        setBackgroundColor(ContextCompat.getColor(getContext(), resId));
     }
 
     public void setBackgroundColor(int color) {
@@ -469,7 +470,7 @@ public class SeekBarRangedView extends View {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void setProgressColorResource(@ColorRes int resId) {
-        setProgressColor(getContext().getColor(resId));
+        setBackgroundColor(ContextCompat.getColor(getContext(), resId));
     }
 
     public void setProgressColor(int color) {
