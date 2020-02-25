@@ -32,10 +32,6 @@ import android.view.animation.DecelerateInterpolator;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by gdelgado on 24/08/2017.
- */
-
 @SuppressWarnings({"unused", "SameParameterValue"})
 public class SeekBarRangedView extends View {
 
@@ -193,7 +189,6 @@ public class SeekBarRangedView extends View {
         if (!isInEditMode()) {
             mScaledTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
         }
-
     }
     //</editor-fold>
 
