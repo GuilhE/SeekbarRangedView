@@ -86,7 +86,7 @@ _Animation last update on November, 2018_
 
 ## Binaries
 
-Binaries and dependency information for Gradle, Maven, Ivy and others can be found at [https://search.maven.org](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22seekbar-ranged-view%22).
+Binaries and dependency information for Gradle, Maven, Ivy and others can be found [here](https://search.maven.org/artifact/com.github.guilhe/seekbar-ranged-view).
 
 <a href='https://bintray.com/gdelgado/android/seekbar-ranged-view?source=watch' alt='Get automatic notifications about new "seekbar-ranged-view" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_bw.png'></a>
 
