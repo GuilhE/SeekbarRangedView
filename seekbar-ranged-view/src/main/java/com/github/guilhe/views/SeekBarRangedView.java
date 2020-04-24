@@ -1,4 +1,4 @@
-package com.github.guilhe.views.seekbar;
+package com.github.guilhe.views;
 
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
@@ -28,8 +28,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
-
-import com.github.guilhe.views.R;
+import com.github.guilhe.views.rangedseekbar.R;
 
 import java.util.ArrayList;
 import java.util.List;

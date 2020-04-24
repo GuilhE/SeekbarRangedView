@@ -50,15 +50,15 @@ Attributes accepted in xml:
 ```
 Example:
 ```xml
-<com.github.guilhe.views.seekbar.SeekBarRangedView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                custom:currentMin="10"
-                custom:backgroundColor="#C0C0C0"
-                custom:progressColor="@color/progress_bar_line"
-                custom:backgroundHeight="10dp"
-                custom:progressHeight="20dp"
-                custom:rounded="true"/>
+<com.github.guilhe.views.SeekBarRangedView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:currentMin="10"
+        custom:backgroundColor="#C0C0C0"
+        custom:progressColor="@color/progress_bar_line"
+        custom:backgroundHeight="10dp"
+        custom:progressHeight="20dp"
+        custom:rounded="true"/>
  ```
 
 For `android:layout_height` you should use `"wrap_content"`:

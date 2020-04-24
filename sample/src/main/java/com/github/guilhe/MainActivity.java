@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.github.guilhe.android.rangeseekbar.R;
 import com.github.guilhe.android.rangeseekbar.databinding.ActivityMainBinding;
-import com.github.guilhe.views.seekbar.SeekBarRangedView;
+import com.github.guilhe.views.SeekBarRangedView;
 
 import java.util.Locale;
 import java.util.Random;
