@@ -15,7 +15,7 @@
                 android:padding="30dp"
                 android:gravity="center">
 
-            <com.github.guilhe.views.SeekBarRangedView
+            <com.github.guilhe.views.seekbar.SeekBarRangedView
                     android:id="@+id/activity_main_a_RangeSeekBarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -23,14 +23,14 @@
                     custom:thumbPressedResource="@drawable/thumb_pressed"
                     custom:thumbNormalResource="@drawable/thumb" />
 
-            <com.github.guilhe.views.SeekBarRangedView
+            <com.github.guilhe.views.seekbar.SeekBarRangedView
                     android:id="@+id/activity_main_step_RangeSeekBarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="40dp"
                     custom:thumbsResource="@mipmap/ic_launcher_round"/>
 
-            <com.github.guilhe.views.SeekBarRangedView
+            <com.github.guilhe.views.seekbar.SeekBarRangedView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="40dp"
@@ -42,7 +42,7 @@
                     custom:progressHeight="20dp"
                     custom:rounded="true"/>
 
-            <com.github.guilhe.views.SeekBarRangedView
+            <com.github.guilhe.views.seekbar.SeekBarRangedView
                     android:id="@+id/activity_main_c_RangeSeekBarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="@string/btn_update"/>
 
-            <com.github.guilhe.views.SeekBarRangedView
+            <com.github.guilhe.views.seekbar.SeekBarRangedView
                     android:id="@+id/activity_main_d_RangeSeekBarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>

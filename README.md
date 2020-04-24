@@ -1,5 +1,5 @@
 # SeekBarRangedView
-[![Build Status](https://travis-ci.org/GuilhE/android-seekbar-ranged-view.svg?branch=master)](https://travis-ci.org/GuilhE/android-seekbar-ranged-view)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3cc30ca7af394140983f6fcfdfc98c83)](https://www.codacy.com/app/GuilhE/android-seekbar-ranged-view?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GuilhE/android-seekbar-ranged-view&amp;utm_campaign=Badge_Grade)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SeekBarRangedView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6115) [![Preview-Appetize.io](https://img.shields.io/badge/Preview-Appetize.io-brightgreen.svg?style=flat.svg)](https://appetize.io/app/652rkf2vptc91mrkqfd210vyvw)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SeekBarRangedView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6115) [![Preview-Appetize.io](https://img.shields.io/badge/Preview-Appetize.io-brightgreen.svg?style=flat.svg)](https://appetize.io/app/652rkf2vptc91mrkqfd210vyvw)
 
 A SeekBar restrained by a minimum and maximum value.
 
@@ -25,7 +25,7 @@ Include it into your project, for example, as a Gradle compile dependency:
 ```groovy
 implementation 'com.github.guilhe:seekbar-ranged-view:${LATEST_VERSION}'
 ```
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.guilhe/seekbar-ranged-view/badge.svg)](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22seekbar-ranged-view%22)  [ ![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion)  
+ [![Maven Central](https://img.shields.io/maven-central/v/com.github.guilhe/seekbar-ranged-view.svg)](https://search.maven.org/search?q=g:com.github.guilhe%20AND%20seekbar-ranged-view) [![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion)  
 
 ## Sample usage
 
@@ -50,7 +50,7 @@ Attributes accepted in xml:
 ```
 Example:
 ```xml
-<com.github.guilhe.views.SeekBarRangedView
+<com.github.guilhe.views.seekbar.SeekBarRangedView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 custom:currentMin="10"

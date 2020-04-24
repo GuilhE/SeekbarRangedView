@@ -7,13 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
+
 import com.github.guilhe.android.rangeseekbar.R;
 import com.github.guilhe.android.rangeseekbar.databinding.ActivityMainBinding;
-import com.github.guilhe.views.SeekBarRangedView;
+import com.github.guilhe.views.seekbar.SeekBarRangedView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -62,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         binding.activityUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.activityMainCRangeSeekBarView.setMinValue(Float.valueOf(binding.activityMainMinEditText.getText().toString()));
-                binding.activityMainCRangeSeekBarView.setMaxValue(Float.valueOf(binding.activityMainMaxEditText.getText().toString()));
+                binding.activityMainCRangeSeekBarView.setMinValue(Float.parseFloat(binding.activityMainMinEditText.getText().toString()));
+                binding.activityMainCRangeSeekBarView.setMaxValue(Float.parseFloat(binding.activityMainMaxEditText.getText().toString()));
                 binding.activitySeekbarCMinTextView.setText(String.valueOf(binding.activityMainCRangeSeekBarView.getMinValue()));
                 binding.activitySeekbarCMaxTextView.setText(String.valueOf(binding.activityMainCRangeSeekBarView.getMaxValue()));
             }
