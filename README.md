@@ -1,4 +1,4 @@
-# SeekBarRangedView
+# SeekbarRangedView
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SeekBarRangedView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6115) [![Preview-Appetize.io](https://img.shields.io/badge/Preview-Appetize.io-brightgreen.svg?style=flat.svg)](https://appetize.io/app/652rkf2vptc91mrkqfd210vyvw)
 
 A SeekBar restrained by a minimum and maximum value.
@@ -13,7 +13,7 @@ SeekbarRangedView is distributed through [Maven Central](https://search.maven.or
 ```groovy
 implementation 'com.github.guilhe:seekbar-ranged-view:${LATEST_VERSION}'
 ```
- [![Maven Central](https://img.shields.io/maven-central/v/com.github.guilhe/seekbar-ranged-view.svg)](https://search.maven.org/search?q=g:com.github.guilhe%20AND%20seekbar-ranged-view) [![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion)  
+ [![Maven Central](https://img.shields.io/maven-central/v/com.github.guilhe/seekbar-ranged-view.svg)](https://search.maven.org/search?q=g:com.github.guilhe%20AND%20seekbar-ranged-view) [![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion) ![Bintray](https://img.shields.io/bintray/dt/gdelgado/android/seekbar-ranged-view) 
 
 ## Usage
 
