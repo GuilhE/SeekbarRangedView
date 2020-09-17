@@ -9,7 +9,7 @@
                  android:theme="@style/AppTheme">
 
         <activity
-                android:name="com.github.guilhe.MainActivity">
+                android:name="com.github.guilhe.sample.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

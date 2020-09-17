@@ -1,4 +1,4 @@
-package com.github.guilhe;
+package com.github.guilhe.sample;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -14,10 +14,6 @@ import com.github.guilhe.views.SeekBarRangedView;
 
 import java.util.Locale;
 import java.util.Random;
-
-/**
- * Created by gdelgado on 24/08/2017.
- */
 
 public class MainActivity extends AppCompatActivity {
 

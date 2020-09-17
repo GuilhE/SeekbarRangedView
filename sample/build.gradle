@@ -4,16 +4,19 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
-    dataBinding {
-        enabled = true
-    }
-
     defaultConfig {
         applicationId "com.github.guilhe.rangeseekbar.sample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
-        versionName "2.0.2"
+        versionCode 6
+        versionName "3.0.0"
+    }
+
+    android.buildFeatures.dataBinding = true
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -23,15 +26,13 @@ android {
         }
     }
 
-    android {
-        lintOptions {
-            abortOnError false
-        }
+    lintOptions {
+        abortOnError false
     }
 }
 
 dependencies {
     implementation project(':seekbar-ranged-view')
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation 'com.android.support.constraint:constraint-layout:2.0.1'
 }
