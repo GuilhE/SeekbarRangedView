@@ -4,8 +4,10 @@
 
 ## [3.0.0]
 
-- Kotlin port  
 - Repo update
+- Kotlin port  
+
+`setOnSeekBarRangedChangeListener()` changed to `setActionCallback()`
 
 ---
 

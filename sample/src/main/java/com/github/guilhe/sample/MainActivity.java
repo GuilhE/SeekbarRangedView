@@ -6,18 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-
 import com.github.guilhe.android.rangeseekbar.R;
 import com.github.guilhe.android.rangeseekbar.databinding.ActivityMainBinding;
 import com.github.guilhe.views.SeekBarRangedView;
-
 import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Random mRandom = new Random();
+    private Random random = new Random();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
         binding.activityMainCRangeSeekBarView.setRounded(true);
         binding.activityMainCRangeSeekBarView.setBackgroundHeight(50);
         binding.activityMainCRangeSeekBarView.setProgressHeight(15);
-        binding.activityMainCRangeSeekBarView.setOnSeekBarRangedChangeListener(new SeekBarRangedView.OnSeekBarRangedChangeListener() {
+        binding.activityMainCRangeSeekBarView.setActionCallback(new SeekBarRangedView.SeekBarRangedChangeCallback() {
             @Override
-            public void onChanged(SeekBarRangedView view, float minValue, float maxValue) {
+            public void onChanged(float minValue, float maxValue) {
                 updateLayout(minValue, maxValue);
             }
 
             @Override
-            public void onChanging(SeekBarRangedView view, float minValue, float maxValue) {
+            public void onChanging(float minValue, float maxValue) {
                 updateLayout(minValue, maxValue);
             }
 
@@ -53,14 +50,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.activityUpdateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.activityMainCRangeSeekBarView.setMinValue(Float.parseFloat(binding.activityMainMinEditText.getText().toString()));
-                binding.activityMainCRangeSeekBarView.setMaxValue(Float.parseFloat(binding.activityMainMaxEditText.getText().toString()));
-                binding.activitySeekbarCMinTextView.setText(String.valueOf(binding.activityMainCRangeSeekBarView.getMinValue()));
-                binding.activitySeekbarCMaxTextView.setText(String.valueOf(binding.activityMainCRangeSeekBarView.getMaxValue()));
-            }
+        binding.activityUpdateButton.setOnClickListener(v -> {
+            binding.activityMainCRangeSeekBarView.setMinValue(Float.parseFloat(binding.activityMainMinEditText.getText().toString()));
+            binding.activityMainCRangeSeekBarView.setMaxValue(Float.parseFloat(binding.activityMainMaxEditText.getText().toString()));
+            binding.activitySeekbarCMinTextView.setText(String.valueOf(binding.activityMainCRangeSeekBarView.getMinValue()));
+            binding.activitySeekbarCMaxTextView.setText(String.valueOf(binding.activityMainCRangeSeekBarView.getMaxValue()));
         });
         String min = String.valueOf(binding.activityMainCRangeSeekBarView.getMinValue());
         String max = String.valueOf(binding.activityMainCRangeSeekBarView.getMaxValue());
@@ -70,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         binding.activityMainDRangeSeekBarView.setProgressColor(ContextCompat.getColor(this, R.color.progress_bar_line));
-        binding.activityMainDRangeSeekBarView.setOnSeekBarRangedChangeListener(new SeekBarRangedView.OnSeekBarRangedChangeListener() {
+        binding.activityMainDRangeSeekBarView.setActionCallback(new SeekBarRangedView.SeekBarRangedChangeCallback() {
             @Override
-            public void onChanged(SeekBarRangedView view, float minValue, float maxValue) {
+            public void onChanged(float minValue, float maxValue) {
                 updateLayout(minValue, maxValue);
             }
 
             @Override
-            public void onChanging(SeekBarRangedView view, float minValue, float maxValue) {
+            public void onChanging(float minValue, float maxValue) {
                 updateLayout(minValue, maxValue);
             }
 
@@ -88,14 +82,11 @@ public class MainActivity extends AppCompatActivity {
         binding.activityMainDRangeSeekBarView.setSelectedMinValue(25, true);
         binding.activityMainDRangeSeekBarView.setSelectedMaxValue(86, true, 2000);
 
-        binding.activityAnimateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                float min = mRandom.nextInt((int) (binding.activityMainDRangeSeekBarView.getSelectedMaxValue() - binding.activityMainDRangeSeekBarView.getMinValue() + 1)) + binding.activityMainDRangeSeekBarView.getMinValue();
-                float max = mRandom.nextInt((int) (binding.activityMainDRangeSeekBarView.getMaxValue() - binding.activityMainDRangeSeekBarView.getSelectedMinValue() + 1)) + binding.activityMainDRangeSeekBarView.getSelectedMinValue();
-                binding.activityMainDRangeSeekBarView.setSelectedMinValue(min, true);
-                binding.activityMainDRangeSeekBarView.setSelectedMaxValue(max, true, 2000);
-            }
+        binding.activityAnimateButton.setOnClickListener(view -> {
+            float min1 = random.nextInt((int) (binding.activityMainDRangeSeekBarView.getSelectedMaxValue() - binding.activityMainDRangeSeekBarView.getMinValue() + 1)) + binding.activityMainDRangeSeekBarView.getMinValue();
+            float max1 = random.nextInt((int) (binding.activityMainDRangeSeekBarView.getMaxValue() - binding.activityMainDRangeSeekBarView.getSelectedMinValue() + 1)) + binding.activityMainDRangeSeekBarView.getSelectedMinValue();
+            binding.activityMainDRangeSeekBarView.setSelectedMinValue(min1, true);
+            binding.activityMainDRangeSeekBarView.setSelectedMaxValue(max1, true, 2000);
         });
     }
 }
