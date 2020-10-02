@@ -8,7 +8,7 @@ on:
       - "sample/**"
       - "buildSrc/**"
       - "gradle/**"
-      - "circular-progress-view/**"
+      - "seekbar-ranged-view/**"
   pull_request:
     branches:
       - '*'
