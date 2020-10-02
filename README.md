@@ -36,7 +36,8 @@ Attributes accepted in xml:
         <attr name="thumbPressedResource" format="reference"/>
 </resources>
 ```
-Example:
+
+Example:  
 ```xml
 <com.github.guilhe.views.SeekBarRangedView
         android:layout_width="match_parent"
@@ -47,7 +48,7 @@ Example:
         custom:backgroundHeight="10dp"
         custom:progressHeight="20dp"
         custom:rounded="true"/>
- ```
+```
 
 For `android:layout_height` you should use `"wrap_content"`:
 
