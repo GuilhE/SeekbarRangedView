@@ -8,12 +8,12 @@ Credits must be shared with [Nick Knudson](https://github.com/nickaknudson) ;)
 
 ## Installation
 
-SeekbarRangedView is distributed through [Maven Central](https://search.maven.org/artifact/com.github.guilhe/seekbar-ranged-view), [Jcenter](https://bintray.com/gdelgado/android/seekbar-ranged-view) and [Jitpack](https://jitpack.io/#GuilhE/SeekbarRangedView).
+SeekbarRangedView is distributed through [Maven Central](https://search.maven.org/artifact/com.github.guilhe/seekbar-ranged-view) and [Jitpack](https://jitpack.io/#GuilhE/SeekbarRangedView).
 
 ```groovy
 implementation 'com.github.guilhe:seekbar-ranged-view:${LATEST_VERSION}'
 ```
- [![Maven Central](https://img.shields.io/maven-central/v/com.github.guilhe/seekbar-ranged-view.svg)](https://search.maven.org/search?q=g:com.github.guilhe%20AND%20seekbar-ranged-view) [![Download](https://api.bintray.com/packages/gdelgado/android/seekbar-ranged-view/images/download.svg) ](https://bintray.com/gdelgado/android/seekbar-ranged-view/_latestVersion) ![Bintray](https://img.shields.io/bintray/dt/gdelgado/android/seekbar-ranged-view) 
+ [![Maven Central](https://img.shields.io/maven-central/v/com.github.guilhe/seekbar-ranged-view.svg)](https://search.maven.org/search?q=g:com.github.guilhe%20AND%20seekbar-ranged-view)
 
 ## Usage
 
